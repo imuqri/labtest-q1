@@ -34,10 +34,12 @@ int main() {
 
     // clearing the buffer
     bzero(buffer, sizeof(buffer));
+
     // reading the random number from the server
     n = read(sockfd, buffer, sizeof(buffer)-1);
     if (n < 0) 
         error("Error reading from socket");
+        
     // print the random number
     printf("Random number: %s\n", buffer);
 

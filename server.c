@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <time.h>
 
 // error handling function
 void error(const char *msg) {
@@ -40,9 +41,12 @@ int main() {
         error("Error on accept");
 
     // generating random number between 100 and 999
+    srand(time(NULL));
     random_number = (rand() % 900) + 100;
+
     // storing the number as a string in the buffer
     sprintf(buffer, "%d", random_number);
+
     // sending the number to the client
     n = write(new_sock, buffer, sizeof(buffer));
     if (n < 0) error("Error writing to socket");
